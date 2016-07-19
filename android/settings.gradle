@@ -1,0 +1,3 @@
+rootProject.name = 'reactPropertyFinder'
+
+include ':app'
