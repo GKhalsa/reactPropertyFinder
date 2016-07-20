@@ -1,6 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
+import SearchPage from './searchPage';
 
 import {
   AppRegistry,
@@ -9,6 +10,7 @@ import {
   View,
   NavigatorIOS
 } from 'react-native';
+
 
 // var React = require('react-native');
 
@@ -65,21 +67,21 @@ class HelloWorld extends Component{
 //     );
 //   }
 // }
-class reactPropertyFinder extends Component {
+class ReactPropertyFinder extends Component {
   render() {
     return (
       <NavigatorIOS
         style={styles.container}
         initialRoute={{
           title: 'Property Finder',
-          component: HelloWorld,
+          component: SearchPage,
         }}/>
     );
   }
 }
 
 // React.AppRegistry.registerComponent('reactPropertyFinder', function(){return reactPropertyFinder})
-AppRegistry.registerComponent('reactPropertyFinder', () => reactPropertyFinder);
+AppRegistry.registerComponent('reactPropertyFinder', () => ReactPropertyFinder);
 
 
 
