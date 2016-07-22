@@ -1,5 +1,7 @@
 'use strict';
 import React, { Component } from 'react';
+import SearchResults from './searchResults'
+
 import {
    StyleSheet,
    Text,
@@ -61,23 +63,6 @@ const styles = StyleSheet.create({
   }
 });
 
-// function urlForQueryAndPage(key, value, pageNumber){
-//   var data = {
-//     country: 'uk',
-//     pretty: '1',
-//     encoding: 'json',
-//     listing_type: 'buy',
-//     action: 'search_listings',
-//     page: pageNumber
-//   };
-//   data[key] = value;
-//
-//   var querystring = Object.keys(data)
-//       .map(key => key + '=' + encodeURIComponent(data[key]))
-//       .join('&');
-//
-//   return 'http://api.nestoria.co.uk/api?' + querystring;
-// }
 
 function urlForQueryAndPage(key, value, pageNumber) {
   var data = {
@@ -113,21 +98,6 @@ class SearchPage extends Component{
   }
 
 
-
-
-
-//facebook example:
- //  _getMoviesFromApiAsync() {
- //   return fetch('http://facebook.github.io/react-native/movies.json')
- //     .then((response) => response.json())
- //     .then((responseJson) => {
- //       return responseJson.movies;
- //     })
- //     .catch((error) => {
- //       console.error(error);
- //     });
- // }
-
  onSearchPressed(){
    var query = urlForQueryAndPage('place_name', this.state.searchString, 1);
    this._executeQuery(query);
@@ -149,7 +119,11 @@ class SearchPage extends Component{
   _handleResponse(response){
     this.setState({isLoading: false, message: ''});
     if(response.application_response_code.substr(0,1) === '1'){
-      console.log('Properties found: ' + response.listings.length);
+      this.props.navigator.push({
+        title: 'Results',
+        component: SearchResults,
+        passProps: {listings: response.listings}
+      });
     } else {
       this.setState({ message: 'location not recognized; please try again.'});
     }
