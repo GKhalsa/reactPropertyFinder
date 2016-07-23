@@ -23,16 +23,6 @@ const styles = StyleSheet.create({
   }
 });
 
-class HelloWorld extends Component{
-  render(){
-    return(
-        <Text style={styles.text}>
-          Hello World!
-        </Text>
-    );
-  }
-}
-
 class ReactPropertyFinder extends Component {
   render() {
     return (
