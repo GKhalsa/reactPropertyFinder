@@ -62,7 +62,6 @@ class SearchResults extends Component {
   }
 
   renderRow(rowData, sectionID, rowID){
-    debugger;
     let price = rowData.price_formatted.split(' ')[0];
     return(
       <TouchableHighlight onPress={() => this.rowPressed(rowData.latitude)} underlayColor='#dddddd'>
