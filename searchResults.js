@@ -1,5 +1,7 @@
 'use strict'
 import React, { Component } from 'react';
+import PropertyView from './propertyView'
+
 import {
    StyleSheet,
    Image,
@@ -43,20 +45,27 @@ class SearchResults extends Component {
   constructor(props){
     super(props);
     var dataSource = new ListView.DataSource(
-      {rowHasChanged: (r1,r2) => r1.guid !== r2.guid});
+      {rowHasChanged: (r1,r2) => r1.latitude !== r2.latitude});
       this.state = {
         dataSource: dataSource.cloneWithRows(this.props.listings)
       };
   }
 
   rowPressed(propertyGuid){
-    let property = this.props.listings.filter(prop => prop.guid === propertyGuid)[0];
+    let property = this.props.listings.filter(prop => prop.latitude === propertyGuid)[0];
+
+    this.props.navigator.push({
+      title: 'Property',
+      component: PropertyView,
+      passProps: {property: property}
+    });
   }
 
   renderRow(rowData, sectionID, rowID){
+    debugger;
     let price = rowData.price_formatted.split(' ')[0];
     return(
-      <TouchableHighlight onPress={() => this.rowPressed(rowData.guid)} underlayColor='#dddddd'>
+      <TouchableHighlight onPress={() => this.rowPressed(rowData.latitude)} underlayColor='#dddddd'>
         <View>
           <View style={styles.rowContainer}>
             <Image style={styles.thumb} source={{uri: rowData.img_url}} />
