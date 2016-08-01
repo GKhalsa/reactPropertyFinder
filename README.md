@@ -2,6 +2,8 @@
 
 A react native app build for ios devices which searches housing listing based in the UK.
 
+![](http://g.recordit.co/07Nl2YmjiV.gif)
+
 
 ## Getting Started
 
